@@ -1,0 +1,1975 @@
+title: "R Tutorial" author: "Ali" date: "2026-01-11" output: word_document: default html_document: default pdf_document: default
+
+## ***R Tutorial***
+
+### ***R Introduction***
+
+##### What is R :-
+
+-\> is a programming language used for statistical computing and graphical presentation
+
+-\> Its most common use is to analyze and visualize data.
+
+##### Why Use R?
+
+-\> great resource for data analysis, data visualization, data science and machine learning
+
+-\> t provides many statistical techniques
+
+. statistical tests
+
+. classification
+
+. clustering
+
+. data reduction
+
+-\> easy to draw graphs
+
+-\> works on different platforms
+
+-\> pen-source
+
+-\> has a large community support
+
+-\> has many packages
+
+------------------------------------------------------------------------
+
+### ***Syntax***
+
+text in R, use single or double quotes:-
+
+```{r}
+"hello R"
+'hello R'
+```
+
+numbers, just type the number
+
+```{r}
+5
+6
+5+6
+```
+
+##### Output
+
+you can output code in R without using a print function :-
+
+```{r}
+"hello R"
+```
+
+R does have a print() function :-
+
+```{r}
+print("hello R")
+print('hello R')
+
+```
+
+### ***R Variables***
+
+##### Creating Variables in R
+
+To assign a value to a variable, use the \<- sign
+
+```{r}
+var1 <- "ali"
+var2 <- 50
+
+print(var1)
+print(var2)
+```
+
+##### Concatenate Elements
+
+You can also concatenate, or join, two or more elements, by using the paste() function.
+
+To combine both text and a variable, R uses comma (,):
+
+```{r}
+F_name <-"Ali"
+L_name <-"Hany"
+
+paste(F_name,L_name)
+
+paste0(F_name,L_name) # non spase
+
+paste0(F_name," ",L_name)
+
+```
+
+##### Multiple Variables
+
+you to assign the same value to multiple variables in one line :-
+
+```{r}
+v1<-v2<-v3<-5
+v1
+v2
+v3
+```
+
+### ***R Data Types***
+
+##### Basic Data Types
+
+---
+* numeric - (10.5, 55, 787)
+* integer - (1L, 55L, 100L, where the letter "L" declares this as an integer)
+* complex - (9 + 3i, where "i" is the imaginary part)
+* character (a.k.a. string) - ("k", "R is exciting", "FALSE", "11.5")
+* logical (a.k.a. boolean) - (TRUE or FALSE)
+---
+
+We can use the class() function to check the data type of a variable:
+
+```{r}
+numeric_var <-5.5
+numeric_var2 <-5
+integet_var <-5L
+complex_var <-3i
+char_var <-"A"
+char_var2 <-"Ali"
+logic_var <-TRUE
+logic_var2 <-FALSE
+
+paste(numeric_var,"=>",class(numeric_var))
+paste(numeric_var2,"=>",class(numeric_var2))
+paste(integet_var,"=>",class(integet_var))
+paste(complex_var,"=>",class(complex_var))
+paste(char_var,"=>",class(char_var))
+paste(logic_var,"=>",class(logic_var))
+paste(logic_var2,"=>",class(logic_var2))
+
+```
+
+### ***R Numbers***
+
+##### Numeric
+
+data type is the most common type in R, and contains any number with or without a decimal, like: 10.5, 55, 787
+
+```{r}
+x <- 10.5
+y <- 55
+
+paste(x,"==>",class(x))
+paste(y,"==>",class(y))
+```
+
+##### Integer
+
+Integers are numeric data without decimals. This is used when you are certain that you will never create a variable that should contain decimals. To create an integer variable, you must use the letter L after the integer value
+
+```{r}
+x <- 10L
+y <- -55L
+
+paste(x,"==>",class(x))
+paste(y,"==>",class(y))
+```
+
+##### Complex
+
+A complex number is written with an "i" as the imaginary part:
+
+```{r}
+x <- 10i
+y <- -55i
+
+paste(x,"==>",class(x))
+paste(y,"==>",class(y))
+```
+
+##### Type Conversion
+
+You can convert from one type to another with the following functions:
+
+---
+as.numeric()
+as.integer()
+as.complex()
+---
+
+```{r}
+x <- 1L # integer
+y <- 2 # numeric
+
+class(x)
+class(y)
+
+# convert from integer to numeric:
+a <- as.numeric(x)
+
+# convert from numeric to integer:
+b <- as.integer(y)
+
+# print values of x and y
+x
+y
+
+# print the class name of a and b
+class(a)
+class(b)
+```
+
+### ***R Math***
+
+##### Simple Math
+
+```{r}
+4+5
+5-6
+5*8
+6/2
+```
+
+##### Built-in Math Functions
+
+###### ***Rounding & Absolute Value***
+
+| Function      | Description           | Example           |
+|---------------|-----------------------|-------------------|
+| `abs(x)`      | Absolute value        | `abs(-10)`        |
+| `round(x, n)` | Round to *n* decimals | `round(3.456, 2)` |
+| `ceiling(x)`  | Round up              | `ceiling(3.2)`    |
+| `floor(x)`    | Round down            | `floor(3.9)`      |
+| `trunc(x)`    | Remove decimals       | `trunc(3.9)`      |
+
+```{r}
+x <-- -72.256
+paste('Absolut value ->',x,"=>",abs(x))
+
+print("----------------------------------------------")
+
+paste(' Round to *n* decimals ->',x,"=>",round(x))
+
+print("----------------------------------------------")
+
+paste(' Round up ->',x,"=>",ceiling(x))
+
+print("----------------------------------------------")
+
+paste(' Round down ->',x,"=>",floor(x))
+
+print("----------------------------------------------")
+
+paste(' Remove decimals  ->',x,"=>",trunc(x))
+```
+
+###### ***Aggregation Functions***
+
+| Function    | Description        | Example              |
+|-------------|--------------------|----------------------|
+| `sum(x)`    | Sum of values      | `sum(1:5)`           |
+| `prod(x)`   | Product of values  | `prod(1:4)`          |
+| `min(x)`    | Minimum            | `min(c(2, 4, 6))`    |
+| `max(x)`    | Maximum            | `max(c(2, 4, 6))`    |
+| `mean(x)`   | Mean               | `mean(c(2, 4, 6))`   |
+| `median(x)` | Median             | `median(c(2, 4, 6))` |
+| `sd(x)`     | Standard deviation | `sd(c(2, 4, 6))`     |
+| `var(x)`    | Variance           | `var(c(2, 4, 6))`    |
+
+```{r}
+x<-4
+y<-4
+z<-6
+
+
+paste("Sum of values ->",x,"+",y,"+",z,"=",sum(x,y,z))
+paste("Sum of values -> from 1 to 10 =",sum(1:10))
+
+print("----------------------------------------------")
+
+paste("Product of values ->",x,"*",y,"*",z,"=",sum(x,y,z))
+paste("Product of values -> from 1 to 10 =",prod(1:10))
+
+print("----------------------------------------------")
+
+paste("Minimum ->",x,",",y,",",z,"=",min(x,y,z))
+
+print("----------------------------------------------")
+
+paste("Maximum ->",x,",",y,",",z,"=",max(x,y,z))
+
+print("----------------------------------------------")
+
+paste("Median ->",x,",",y,",",z,"=",median(x,y,z))
+
+print("----------------------------------------------")
+
+paste("Standard deviation ->",x,",",y,",",z,"=",var(c(x,y,z)))
+
+print("----------------------------------------------")
+
+paste("Variance ->",x,",",y,",",z,"=",sd(c(x,y,z)))
+
+
+```
+
+###### ***Logarithmic & Exponential Functions***
+
+| Function   | Description      | Example      |
+|------------|------------------|--------------|
+| `log(x)`   | Natural log (ln) | `log(10)`    |
+| `log10(x)` | Base-10 log      | `log10(100)` |
+| `log2(x)`  | Base-2 log       | `log2(8)`    |
+| `exp(x)`   | e\^x             | `exp(1)`     |
+| `sqrt(x)`  | Square root      | `sqrt(16)`   |
+
+```{r}
+paste("Natural log (ln)s ->",log(10))
+
+print("----------------------------------------------")
+
+paste("Base-10 log  ->",log10(100))
+
+print("----------------------------------------------")
+
+paste("Base-2 log   ->",log2(8))
+
+print("----------------------------------------------")
+
+paste("e^x   ->",exp(1))
+
+print("----------------------------------------------")
+
+paste("Square root   ->",sqrt(16))
+
+
+```
+
+###### ***Trigonometric Functions***
+
+| Function  | Description     |
+|-----------|-----------------|
+| `sin(x)`  | Sine            |
+| `cos(x)`  | Cosine          |
+| `tan(x)`  | Tangent         |
+| `asin(x)` | Inverse sine    |
+| `acos(x)` | Inverse cosine  |
+| `atan(x)` | Inverse tangent |
+
+```{r}
+paste("Sine 90 ->",sin(90))
+
+print("----------------------------------------------")
+
+paste("Cosine 90 ->",cos(90))
+
+print("----------------------------------------------")
+paste("Tangent 90 ->",tan(90))
+
+print("----------------------------------------------")
+paste("Inverse sine   90 ->",asin(90))
+
+print("----------------------------------------------")
+paste("Inverse cosine 90 ->",acos(90))
+
+print("----------------------------------------------")
+paste("Inverse tangent 90 ->",atan(90))
+
+```
+
+###### ***Random Number Functions***
+
+| Function     | Description          | Example           |
+|--------------|----------------------|-------------------|
+| `runif(n)`   | Uniform distribution | `runif(5)`        |
+| `rnorm(n)`   | Normal distribution  | `rnorm(5)`        |
+| `sample(x)`  | Random sample        | `sample(1:10, 3)` |
+| `set.seed()` | Reproducible results | `set.seed(123)`   |
+
+```{r}
+print("----------------------------------------------")
+paste("Uniform distribution  5 ->",runif(5))
+print("----------------------------------------------")
+paste("Normal distribution  5 ->",rnorm(5))
+print("----------------------------------------------")
+paste("Random sample  3s from 1 to 10 ->")
+sample(1:10,3)
+
+
+```
+
+### ***R Operators***
+
+##### R Arithmetic Operators
+
+| Operator | Operator         | Example  |
+|----------|------------------|----------|
+| `+`      | Addition         | `x + y`  |
+| `-`      | Subtraction      | `x - y`  |
+| `*`      | Multiplication   | `x * y`  |
+| `/`      | Division         | `x / y`  |
+| `^`      | Exponent         | `x ^ y`  |
+| `%%`     | Modulus          | `x %% y` |
+| `%/%`    | Integer Division | `x %/%y` |
+
+##### R Comparison Operators
+
+| Operator | Name                     | Example  |
+|----------|--------------------------|----------|
+| `==`     | Equal to                 | `x == y` |
+| `!=`     | Not equal to             | `x != y` |
+| `>`      | Greater than             | `x > y`  |
+| `<`      | Less than                | `x < y`  |
+| `>=`     | Greater than or equal to | `x >= y` |
+| `<=`     | Less than or equal to    | `x <= y` |
+
+##### R Logical Operators
+
+| Operator | Description |
+|----|----|
+| `&` | Element-wise Logical AND operator. Returns TRUE if both elements are TRUE |
+| `&&` | Logical AND operator. Returns TRUE if both statements are TRUE |
+| `|` | Element-wise Logical OR operator. Returns TRUE if one of the statements is TRUE |
+| `||` | Logical OR operator. Returns TRUE if one of the statements is TRUE |
+| `!` | Logical NOT operator. Returns FALSE if the statement is TRUE |
+
+##### R Miscellaneous Operators
+
+| Operator | Description | Example |
+|----|----|----|
+| `:` | Creates a sequence of numbers | `x <- 1:10` |
+| `%in%` | Checks if an element belongs to a vector | `x %in% y` |
+| `%*%` | Matrix multiplication | `x <- Matrix1 %*% Matrix2` |
+
+### ***R Booleans***
+
+-\> In programming, you often need to know if an expression is true or false. -\> You can evaluate any expression in R, and get one of two answers, TRUE or FALSE.
+
+```{r}
+10 > 9    # TRUE because 10 is greater than 9
+10 == 9   # FALSE because 10 is not equal to 9
+10 < 9    # FALSE because 10 is greater than 9
+
+```
+
+### ***R Strings***
+
+##### Multiline Strings
+
+You can assign a multiline string to a variable like this :-
+
+```{r}
+str <- "Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua."
+
+str
+```
+
+However, note that R will add a "\n" at the end of each line break. This is called an escape character, and the n character indicates a new line.
+
+If you want the line breaks to be inserted at the same position as in the code, use the cat() function:
+
+```{r}
+str <- "Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua."
+
+cat(str)
+```
+
+##### String Length
+
+There are many useful string functions in R.
+
+For example, to find the number of characters in a string, use the nchar() function:
+
+```{r}
+str <- "Hello World!"
+
+nchar(str)
+```
+
+##### Check a String
+
+Use the grepl() function to check if a character or a sequence of characters are present in a string:
+
+```{r}
+str <- "Hello World!"
+
+grepl("H", str)
+grepl("Hello", str)
+grepl("X", str)
+```
+
+##### Combine Two Strings
+
+Use the paste() function to merge/concatenate two strings:
+
+```{r}
+str1 <- "Hello"
+str2 <- "World"
+
+paste(str1, str2)
+```
+
+### ***R If ... Else***
+
+##### Conditions and If Statements
+
+You already know that R supports familiar comparison conditions from mathematics, such as :-
+
+| Operator | Name                     | Example  |
+|----------|--------------------------|----------|
+| `==`     | Equal to                 | `x == y` |
+| `!=`     | Not equal to             | `x != y` |
+| `>`      | Greater than             | `x > y`  |
+| `<`      | Less than                | `x < y`  |
+| `>=`     | Greater than or equal to | `x >= y` |
+| `<=`     | Less than or equal to    | `x <= y` |
+
+##### The if Statement
+
+An "if statement" is written with the if keyword, and it is used to specify a block of code to be executed if a condition is TRUE:
+
+```{r}
+a<-30
+b<-20
+if(a>b){
+  print("a is greater than b")
+}
+```
+
+##### Else If
+
+The else if keyword is R's way of saying "if the previous conditions were not true, then try this condition":
+
+```{r}
+a <- 33
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print ("a and b are equal")
+}
+```
+
+In this example a is equal to b, so the first condition is not true, but the else if condition is true, so we print to screen that "a and b are equal".
+
+##### If Else
+
+The else keyword catches anything which isn't caught by the preceding conditions:
+
+```{r}
+a <- 200
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print("a and b are equal")
+} else {
+  print("a is greater than b")
+}
+```
+
+In this example, a is greater than b, so the first condition is not true, also the else if condition is not true, so we go to the else condition and print to screen that "a is greater than b".
+
+You can also use else without else if:
+
+```{r}
+a <- 200
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else {
+  print("b is not greater than a")
+}
+```
+
+##### ***Nested If Statements***
+
+You can also have if statements inside if statements, this is called nested if statements.
+
+```{r}
+x <- 41
+
+if (x > 10) {
+  print("Above ten")
+  if (x > 20) {
+    print("and also above 20!")
+  } else {
+    print("but not above 20.")
+  }
+} else {
+  print("below 10.")
+}
+```
+
+##### ***AND***
+
+The & symbol (and) is a logical operator, and is used to combine conditional statements:
+
+```{r}
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b & c > a) {
+  print("Both conditions are true")
+}
+```
+
+##### ***OR***
+
+The \| symbol (or) is a logical operator, and is used to combine conditional statements:
+
+```{r}
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b | a > c) {
+  print("At least one of the conditions is true")
+}
+```
+
+### ***R While Loop***
+
+With the while loop we can execute a set of statements as long as a condition is TRUE:
+
+```{r}
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+}
+```
+
+##### ***Break***
+
+With the break statement, we can stop the loop even if the while condition is TRUE:
+
+```{r}
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+  if (i == 4) {
+    break
+  }
+}
+```
+
+The loop will stop at 3 because we have chosen to finish the loop by using the break statement when i is equal to 4 (i == 4).
+
+##### ***Next***
+
+With the next statement, we can skip an iteration without terminating the loop:
+
+```{r}
+i <- 0
+while (i < 6) {
+  i <- i + 1
+  if (i == 3) {
+    next
+  }
+  print(i)
+}
+```
+
+When the loop passes the value 3, it will skip it and continue to loop.
+
+##### ***Yahtzee***
+
+-\> If .. Else Combined with a While Loop
+
+-\> To demonstrate a practical example, let us say we play a game of Yahtzee!
+
+```{r}
+dice <- 1
+while (dice <= 6) {
+  if (dice < 6) {
+    print("No Yahtzee")
+  } else {
+    print("Yahtzee!")
+  }
+  dice <- dice + 1
+}
+```
+
+If the loop passes the values ranging from 1 to 5, it prints "No Yahtzee". Whenever it passes the value 6, it prints "Yahtzee!".
+
+### ***R For Loop***
+
+A for loop is used for iterating over a sequence:
+
+```{r}
+for (x in 1:10) {
+  print(x)
+}
+```
+
+```{r}
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  print(x)
+}
+```
+
+```{r}
+dice <- c(1, 2, 3, 4, 5, 6)
+
+for (x in dice) {
+  print(x)
+}
+```
+
+##### ***Break***
+
+With the break statement, we can stop the loop before it has looped through all the items:
+
+```{r}
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  if (x == "cherry") {
+    break
+  }
+  print(x)
+}
+```
+
+The loop will stop at "cherry" because we have chosen to finish the loop by using the break statement when x is equal to "cherry" (x == "cherry").
+
+##### ***Next***
+
+With the next statement, we can skip an iteration without terminating the loop:
+
+```{r}
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  if (x == "banana") {
+    next
+  }
+  print(x)
+}
+```
+
+##### ***Yahtzee***
+
+-\> If .. Else Combined with a For Loop
+
+-\>To demonstrate a practical example, let us say we play a game of Yahtzee!
+
+```{r}
+dice <- 1:6
+
+for(x in dice) {
+  if (x == 6) {
+    print(paste("The dice number is", x, "Yahtzee!"))
+  } else {
+    print(paste("The dice number is", x, "Not Yahtzee"))
+  }
+}
+```
+
+If the loop reaches the values ranging from 1 to 5, it prints "No Yahtzee" and its number. When it reaches the value 6, it prints "Yahtzee!" and its number.
+
+##### ***Nested Loops***
+
+It is also possible to place a loop inside another loop. This is called a nested loop:
+
+```{r}
+adj <- list("red", "big", "tasty")
+
+fruits <- list("apple", "banana", "cherry")
+  for (x in adj) {
+    for (y in fruits) {
+      print(paste(x, y))
+  }
+}
+```
+
+### ***R Functions***
+
+-\> A function is a block of code which only runs when it is called.
+
+-\> You can pass data, known as parameters, into a function.
+
+-\> A function can return data as a result.
+
+##### Creating a Function
+
+To create a function, use the function() keyword:
+
+```{r}
+my_function <- function(){
+  print("hello")
+}
+
+```
+
+##### Call a Function
+
+```{r}
+my_function <- function(){
+  print("hello")
+}
+
+my_function()
+```
+
+##### Arguments
+
+-\> Information can be passed into functions as arguments.
+
+-\> Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+
+-\> The following example has a function with one argument (fname). When the function is called, we pass along a first name, which is used inside the function to print the full name
+
+```{r}
+hello_fun <- function(name) {
+  paste("hello",name)
+}
+
+hello_fun("Ali")
+hello_fun("Hany")
+hello_fun("Moo")
+```
+
+---
+Parameters or Arguments?
+The terms "parameter" and "argument" can be used for the same thing: information that are passed into a function.
+
+From a function's perspective:
+
+A parameter is the variable listed inside the parentheses in the function definition.
+
+An argument is the value that is sent to the function when it is called.
+---
+
+##### Number of Arguments
+
+By default, a function must be called with the correct number of arguments. Meaning that if your function expects 2 arguments, you have to call the function with 2 arguments, not more, and not less:
+
+```{r}
+full_name <- function(fname, lname) {
+  paste(fname, lname)
+}
+
+full_name("Ali", "Hany")
+full_name("Mo", "Salah")
+```
+
+##### Default Parameter Value
+
+The following example shows how to use a default parameter value.
+
+If we call the function without an argument, it uses the default value
+
+```{r}
+my_function <- function(country = "Egypt") {
+  paste("I am from", country)
+}
+
+my_function("Sweden")
+my_function("India")
+my_function() # will get the default value, which is Norway
+my_function("USA")
+```
+
+##### Return Values
+
+To let a function return a result, use the return() function:
+
+```{r}
+my_function <- function(x) {
+  return (5 * x)
+}
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9))
+```
+
+##### ***Nested Functions***
+
+There are two ways to create a nested function:
+
+-   Call a function within another function.
+-   Write a function within a function.
+
+```{r}
+Nested_function <- function(x, y) {
+  a <- x + y
+  return(a)
+}
+
+Nested_function(Nested_function(2,2), Nested_function(3,3))
+
+```
+
+-\> Example Explained
+
+-   The function tells x to add y.
+
+-   The first input Nested_function(2,2) is "x" of the main function.
+
+-   The second input Nested_function(3,3) is "y" of the main function.
+
+-   The output is therefore (2+2) + (3+3) = 10.
+
+```{r}
+Outer_func <- function(x) {
+  Inner_func <- function(y) {
+    a <- x + y
+    return(a)
+  }
+  return (Inner_func)
+}
+output <- Outer_func(3) # To call the Outer_func
+output(5)
+```
+
+-\> Example Explained
+
+-   You cannot directly call the function because the Inner_func has been defined (nested) inside the Outer_func.
+
+-   We need to call Outer_func first in order to call Inner_func as a second step.
+
+-   We need to create a new variable called output and give it a value, which is 3 here.
+
+-   We then print the output with the desired value of "y", which in this case is 5.
+
+-   The output is therefore 8 (3 + 5).
+
+##### ***R Function Recursion***
+
+R also accepts function recursion, which means a defined function can call itself.
+
+Recursion is a common mathematical and programming concept. It means that a function calls itself. This has the benefit of meaning that you can loop through data to reach a result.
+
+The developer should be very careful with recursion as it can be quite easy to slip into writing a function which never terminates, or one that uses excess amounts of memory or processor power. However, when written correctly, recursion can be a very efficient and mathematically-elegant approach to programming.
+
+In this example, tri_recursion() is a function that we have defined to call itself ("recurse"). We use the k variable as the data, which decrements (-1) every time we recurse. The recursion ends when the condition is not greater than 0 (i.e. when it is 0).
+
+To a new developer it can take some time to work out how exactly this works, best way to find out is by testing and modifying it.
+
+```{r}
+tri_recursion <- function(k) {
+  if (k > 0) {
+    result <- k + tri_recursion(k - 1)
+    print(result)
+  } else {
+    result = 0
+    return(result)
+  }
+}
+tri_recursion(6)
+```
+
+##### ***Global Variables***
+
+Variables that are created outside of a function are known as global variables.
+
+Global variables can be used by everyone, both inside of functions and outside.
+
+```{r}
+txt <- "awesome"
+my_function <- function() {
+  paste("R is", txt)
+}
+
+my_function()
+```
+
+If you create a variable with the same name inside a function, this variable will be local, and can only be used inside the function. The global variable with the same name will remain as it was, global and with the original value.
+
+```{r}
+txt <- "global variable"
+my_function <- function() {
+  txt = "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+txt # print txt
+```
+
+##### ***The Global Assignment Operator***
+
+Normally, when you create a variable inside a function, that variable is local, and can only be used inside that function.
+
+To create a global variable inside a function, you can use the global assignment operator \<\<-
+
+```{r}
+my_function <- function() {
+txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+print(txt)
+```
+
+Also, use the global assignment operator if you want to change a global variable inside a function:
+
+```{r}
+txt <- "awesome"
+my_function <- function() {
+  txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+paste("R is", txt)
+```
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## ***R Data Structures***
+
+-\> Data structures are used to store and organize values.
+
+R provides many built-in data structures. Each is used to handle data in different ways:
+
+-   Vectors
+
+-   Lists
+
+-   Matrices
+
+-   Arrays
+
+-   Data Frames
+
+| Data Structure | Contains | Same Type? | Use Case |
+|:---|:---|:---|:---|
+| Vector | Single row of values | Yes | Simple sequences |
+| List | Multiple types | No | Grouped mixed data |
+| Matrix | 2D same-type values | Yes | Tables with numeric data |
+| Array | Multi-dimensional values | Yes | 3D or higher-dimensional data |
+| Data Frame | Columns of mixed types | No | Working with tabular data |
+
+### ***R Vectors***
+
+A vector is simply a list of items that are of the same type.
+
+To combine the list of items to a vector, use the `c()` function and separate the items by a comma.
+
+```{r}
+my_vec <- c(1,2,3,4,5,6)
+
+
+my_vec
+```
+
+```{r}
+my_name <- c("ali","hany","nosseir")
+
+my_name
+```
+
+To create a vector with numerical values in a sequence, use the `:` operator:
+
+```{r}
+num1To10 <- c(1:10)
+
+num1To10
+```
+
+You can also create numerical values with decimals in a sequence, but note that if the last element does not belong to the sequence, it is not used:
+
+```{r}
+# Vector with numerical decimals in a sequence
+numbers1 <- 1.5:6.5
+numbers1
+
+# Vector with numerical decimals in a sequence where the last element is not used
+numbers2 <- 1.5:6.3
+numbers2
+```
+
+In the example below, we create a vector of logical values:
+
+```{r}
+logic_vec <- c(TRUE,TRUE,FALSE,TRUE)
+
+logic_vec
+```
+
+###### ***Sort a Vector***
+
+To sort items in a vector alphabetically or numerically, use the sort() function:
+
+```{r}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+numbers <- c(13, 3, 5, 7, 20, 2)
+
+sort(fruits)  # Sort a string
+sort(numbers) # Sort numbers
+
+sort(fruits,decreasing = TRUE)  # Sort a string
+sort(numbers,decreasing = TRUE) # Sort numbers
+```
+
+##### ***Access Vectors***
+
+You can access the vector items by referring to its index number inside brackets []. The first item has index 1, the second item has index 2, and so on:
+
+```{r}
+#           1 2 3 4 5 6 7
+my_vec <- c(1,5,0,3,9,2,102)
+
+my_vec[1] # one index 
+```
+
+You can also access multiple elements by referring to different index positions with the c() function:
+
+```{r}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Access the first and third item (banana and orange)
+fruits[c(1, 3)] #  1,2  not return last value
+```
+
+```{r}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Access the first and third item (banana and orange)
+fruits[1:3] # 1,2,2
+```
+
+You can also use negative index numbers to access all items except the ones specified:
+
+```{r}
+color <-c("red","white","black","pink","blue","orange")
+
+color[-1]
+color[-2]
+```
+
+##### ***Mathematical operations***\*
+
+```{r}
+vec1 <- c(5,9,6,3,8)
+vec2 <- c(50,90,60,30,80)
+
+# Adding
+vec1 + vec2
+
+# Subtracting
+vec2 - vec1
+
+# Multiplying
+
+vec1 * vec2
+
+# Dividing
+vec2 / vec1
+
+# summation
+sum(vec1)
+
+#max
+
+max(vec2)
+
+#min
+min(vec2)
+# ...........
+
+
+```
+
+##### ***TRUE,FALSE return***
+
+```{r}
+vec2 <- c(50,90,60,30,80)
+
+vec2[c(TRUE,FALSE,FALSE,TRUE,TRUE)]
+vec2[c(T,F,F,F,T)]
+```
+
+##### ***Naming of elements***
+
+give each element name
+
+```{r}
+marks <-c(75,80,66,90,100,98,25)
+names(marks)<- c("s1","s2","s3","s4","s5","s6","s7")
+
+marks
+
+marks["s3"]
+marks[c("s3","s1","s4")]
+```
+
+##### ***Change an Item***
+
+To change the value of a specific item, refer to the index number:
+
+```{r}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Change "banana" to "pear"
+fruits[1] <- "pear"
+
+# Print fruits
+fruits
+```
+
+###### ***Repeat Vectors***
+
+To repeat vectors, use the rep() function:
+
+```{r}
+#Repeat each value:
+
+
+repeat_each <- rep(c(1,2,3), each = 3)
+
+repeat_each
+```
+
+```{r}
+#Repeat the sequence of the vector:
+
+repeat_times <- rep(c(1,2,3), times = 3)
+
+repeat_times
+```
+
+```{r}
+# Repeat each value independently:
+
+repeat_indepent <- rep(c(1,2,3), times = c(5,2,1))
+
+repeat_indepent
+```
+
+##### ***Generating Sequenced Vectors***
+
+One of the examples on top, showed you how to create a vector with numerical values in a sequence with the : operator:
+
+```{r}
+v <- 1:10
+v
+```
+
+To make bigger or smaller steps in a sequence, use the seq() function:
+
+```{r}
+numbers <- seq(from = 0, to = 100, by = 20)
+
+numbers
+```
+
+Note: The seq() function has three parameters: from is where the sequence starts, to is where the sequence stops, and by is the interval of the sequence.
+
+### ***R Lists***
+
+A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable.
+
+To create a list, use the list() function:
+
+```{r}
+# List of strings
+thislist <- list("apple", "banana", "cherry")
+
+# Print the list
+thislist
+```
+
+```{r}
+l <- list(1:10)
+l
+```
+
+```{r}
+lis <- list(1:5,"ali",T,c(90,100,110))
+
+lis
+
+```
+
+##### ***Access Lists***
+
+You can access the list items by referring to its index number, inside brackets. The first item has index 1, the second item has index 2, and so on:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+thislist[1]
+```
+
+##### ***Change Item Value***
+
+To change the value of a specific item, refer to the index number:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+thislist[1] <- "blackcurrant"
+
+# Print the updated list
+thislist
+```
+
+##### ***List Length***
+
+To find out how many items a list has, use the length() function:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+length(thislist)
+```
+
+##### ***Check if Item Exists***
+
+To find out if a specified item is present in a list, use the %in% operator:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+"apple" %in% thislist
+```
+
+##### ***Add List Items***
+
+To add an item to the end of the list, use the append() function:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+append(thislist, "orange")
+```
+
+To add an item to the right of a specified index, add "after=index number" in the append() function:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+append(thislist, "orange", after = 2)
+```
+
+##### ***Remove List Items***
+
+You can also remove list items. The following example creates a new, updated list without an "apple" item:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+newlist <- thislist[-1]
+
+# Print the new list
+newlist
+```
+
+##### ***Range of Indexes***
+
+You can specify a range of indexes by specifying where to start and where to end the range, by using the : operator:
+
+```{r}
+thislist <- list("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
+
+(thislist)[2:5]
+```
+
+##### ***Loop Through a List***
+
+You can loop through the list items by using a for loop:
+
+```{r}
+thislist <- list("apple", "banana", "cherry")
+
+for (x in thislist) {
+  print(x)
+}
+```
+
+##### ***Join Two Lists***
+
+There are several ways to join, or concatenate, two or more lists in R.
+
+The most common way is to use the c() function, which combines two elements together:
+
+```{r}
+list1 <- list("a", "b", "c")
+list2 <- list(1,2,3)
+list3 <- c(list1,list2)
+
+list3
+```
+
+### ***R Matrices***
+
+A matrix is a two dimensional data set with columns and rows.
+
+A column is a vertical representation of data, while a row is a horizontal representation of data.
+
+A matrix can be created with the matrix() function. Specify the nrow and ncol parameters to get the amount of rows and columns:
+
+```{r}
+this_matrx <- matrix(c(1,2,3,4,5,6),nrow=3,ncol=2)  # three rows  2 columns
+this_matrx
+```
+
+Note: Remember the c() function is used to concatenate items together.
+
+You can also create a matrix with strings:
+
+```{r}
+this_matrix <- matrix(c("red","white","black","pink"),nrow = 2, ncol = 2)
+this_matrix
+
+```
+
+```{r}
+m<-matrix(c(1:12),nrow = 3)
+m
+```
+
+##### ***Sort the values ​​by class***
+
+```{r}
+m<-matrix(c(1:12),nrow = 3 , byrow = T)
+m
+```
+
+##### ***Access Matrix Items***
+
+You can access the items by using [ ] brackets. The first number "1" in the bracket specifies the row-position, while the second number "2" specifies the column-position:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+thismatrix
+print("-----------------------")
+thismatrix[2,] # row 2
+```
+
+The whole column can be accessed if you specify a comma before the number in the bracket:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+
+thismatrix
+print("-----------------------")
+
+thismatrix[,2]  # col2  
+```
+
+##### ***Access More Than One Row***
+
+More than one row can be accessed if you use the c() function:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+thismatrix
+print("-----------------------")
+
+thismatrix[c(1,2),]
+```
+
+##### ***Access More Than One Column***
+
+More than one column can be accessed if you use the c() function:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+thismatrix
+print("-----------------------")
+
+thismatrix[, c(1,2)]
+```
+
+##### ***Add Rows and Columns***
+
+Use the cbind() function to add additional columns in a Matrix:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+newmatrix <- cbind(thismatrix, c("strawberry", "blueberry", "raspberry"))
+
+# Print the new matrix
+newmatrix
+```
+
+Note: The cells in the new column must be of the same length as the existing matrix.
+
+Use the rbind() function to add additional rows in a Matrix:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+newmatrix <- rbind(thismatrix, c("strawberry", "blueberry", "raspberry"))
+
+# Print the new matrix
+newmatrix
+```
+
+Note: The cells in the new row must be of the same length as the existing matrix.
+
+Remove Rows and Columns
+
+Use the c() function to remove rows and columns in a Matrix:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange", "mango", "pineapple"), nrow = 3, ncol =2)
+
+#Remove the first row and the first column
+thismatrix <- thismatrix[-c(1), -c(1)]
+
+thismatrix
+```
+
+##### ***Check if an Item Exists***
+
+To find out if a specified item is present in a matrix, use the %in% operator:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+"apple" %in% thismatrix
+```
+
+##### ***Number of Rows and Columns***
+
+Use the dim() function to find the number of rows and columns in a Matrix:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+dim(thismatrix)
+```
+
+##### ***Matrix Length***
+
+Use the length() function to find the dimension of a Matrix:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+length(thismatrix)
+```
+
+Total cells in the matrix is the number of rows multiplied by number of columns.
+
+In the example above: Dimension = 2\*2 = 4.
+
+##### ***Loop Through a Matrix***
+
+You can loop through a Matrix using a for loop. The loop will start at the first row, moving right:
+
+```{r}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+for (rows in 1:nrow(thismatrix)) {
+  for (columns in 1:ncol(thismatrix)) {
+    print(thismatrix[rows, columns])
+  }
+}
+```
+
+##### ***Combine two Matrices***
+
+Again, you can use the rbind() or cbind() function to combine two or more matrices together:
+
+```{r}
+# Combine matrices
+Matrix1 <- matrix(c("apple", "banana", "cherry", "grape"), nrow = 2, ncol = 2)
+Matrix2 <- matrix(c("orange", "mango", "pineapple", "watermelon"), nrow = 2, ncol = 2)
+
+# Adding it as a rows
+Matrix_Combined <- rbind(Matrix1, Matrix2)
+Matrix_Combined
+
+# Adding it as a columns
+Matrix_Combined <- cbind(Matrix1, Matrix2)
+Matrix_Combined
+```
+
+##### ***Naming the rows & coulms***
+
+```{r}
+colm_name <- list("one","four","sevem","ten")
+row_name <- list("one","two","three")
+
+m <- matrix(1:12, nrow = 4, byrow = TRUE,
+            dimnames = list(colm_name, row_name))
+m
+
+
+```
+
+##### ***math***
+
+```{r}
+
+m <- matrix(1:12, nrow = 4, byrow = TRUE,
+            dimnames = list(colm_name, row_name))
+
+m
+print("--------------------")
+m1 <- matrix(10:21, nrow = 4, byrow = TRUE,
+            dimnames = list(colm_name, row_name))
+m1
+
+print("--------------------")
+
+res <- m+m1
+
+print("res = ")
+res
+
+```
+
+```{r}
+mat <- matrix(1:12,nrow = 3,byrow = T)
+mat
+
+print("-------------")
+print("row Sum")
+rowSums(mat)
+print("-------------")
+print("colum Sum")
+colSums(mat)
+
+```
+
+##### ***change value***\*
+
+```{r}
+row_name <- c("one","two","three","four")
+colm_name <- c("one","two","three")
+
+m <- matrix(1:12, nrow = 4, byrow = TRUE,
+            dimnames = list(row_name, colm_name))
+
+m
+print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
+
+m["two","one"] <- 32
+m
+
+```
+
+### ***R Factors***
+
+Factors are used to categorize data. Examples of factors are:
+
+-   Demography: Male/Female
+
+-   Music: Rock, Pop, Classic, Jazz Training:
+
+<!-- -->
+
+-   Strength, Stamina
+
+To create a factor, use the `factor()` function and add a vector as argument:
+
+```{r}
+music_cat <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+music_cat
+```
+
+You can see from the example above that that the factor has four levels (categories): Classic, Jazz, Pop and Rock.
+
+To only print the levels, use the `levels()` function:
+
+```{r}
+music_cat <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+levels(music_cat)
+```
+
+You can also set the levels, by adding the `levels` argument inside the `factor()` function:
+
+```{r}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"), levels = c("Classic", "Jazz", "Pop", "Rock", "Other"))
+
+levels(music_genre)
+
+```
+
+##### ***Factor Length***
+
+Use the `length()` function to find out how many items there are in the factor:
+
+```{r}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+length(music_genre)
+
+length(levels(music_cat))
+```
+
+##### ***Access Factors***
+
+To access the items in a factor, refer to the index number, using `[]` brackets:
+
+```{r}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+music_genre[3]
+```
+
+##### ***Change Item Value***
+
+To change the value of a specific item, refer to the index number:
+
+```{r}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+music_genre[3] <- "Pop"
+
+music_genre[3]
+
+```
+
+##### ***Summary***
+
+The levels are returned, along with the count of each level.
+
+```{r}
+
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+summary(music_genre)
+
+```
+
+### ***R Data Frames***
+
+Data Frames are data displayed in a format as a table.
+
+Data Frames can have different types of data inside it. While the first column can be `character`, the second and third can be `numeric` or `logical`. However, each column should have the same type of data.
+
+Use the `data.frame()` function to create a data frame:
+
+```{r}
+df <- data.frame(
+    Training   = c("Strength", "Stamina", "Other"),
+    plus = c(100,20,50),
+    Duration = c(60, 30, 45)
+
+)
+
+df
+```
+
+##### ***Summarize the Data***
+
+Use the `summary()` function to summarize the data from a Data Frame:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame
+
+summary(Data_Frame)
+```
+
+##### ***Access Items***
+
+We can use single brackets `[ ]`, double brackets `[[ ]]` or `$` to access columns from a data frame:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame[1]
+
+Data_Frame[["Training"]]
+
+Data_Frame$Training
+
+
+```
+
+##### ***Add Rows***
+
+Use the `rbind()` function to add new rows in a Data Frame:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Add a new row
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110))
+
+# Print the new row
+New_row_DF
+```
+
+##### ***Add Columnsv***
+
+Use the `cbind()` function to add new columns in a Data Frame:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Add a new column
+New_col_DF <- cbind(Data_Frame, Steps = c(1000, 6000, 2000))
+
+# Print the new column
+New_col_DF
+```
+
+##### ***Remove Rows and Columns***
+
+Use the `c()` function to remove rows and columns in a Data Frame:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Remove the first row and column
+Data_Frame_New <- Data_Frame[-c(1), -c(1)]
+
+# Print the new data frame
+Data_Frame_New
+```
+
+##### ***Amount of Rows and Columns***
+
+Use the `dim()` function to find the amount of rows and columns in a Data Frame:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+dim(Data_Frame)
+```
+
+You can also use the `ncol()` function to find the number of columns and `nrow()` to find the number of rows:
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+ncol(Data_Frame)
+nrow(Data_Frame)
+```
+
+##### ***Data Frame Length***
+
+Use the `length()` function to find the number of columns in a Data Frame (similar to `ncol()`):
+
+```{r}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+length(Data_Frame)
+```
+
+##### ***Combining Data Frames***
+
+Use the `rbind()` function to combine two or more data frames in R vertically:
+
+```{r}
+Data_Frame1 <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame2 <- data.frame (
+  Training = c("Stamina", "Stamina", "Strength"),
+  Pulse = c(140, 150, 160),
+  Duration = c(30, 30, 20)
+)
+
+New_Data_Frame <- rbind(Data_Frame1, Data_Frame2)
+New_Data_Frame
+
+```
+
+And use the `cbind()` function to combine two or more data frames in R horizontally:
+
+```{r}
+Data_Frame3 <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame4 <- data.frame (
+  Steps = c(3000, 6000, 2000),
+  Calories = c(300, 400, 300)
+)
+
+New_Data_Frame1 <- cbind(Data_Frame3, Data_Frame4)
+New_Data_Frame1
+```
+
+##### ***head()***
+
+It is used to display the first rows of a Data Frame (or any tabular object).
+
+```{r}
+df <- data.frame(
+  name = c("Ali", "Sara", "Omar", "Laila", "Mona", "Youssef", "Nour","Ali", "Sara", "Omar", "Laila", "Mona", "Youssef", "Nour"),
+  age  = c(20, 22, 21, 23, 19, 24, 20,20, 22, 21, 23, 19, 24, 20)
+)
+
+
+
+head(df)
+```
+
+##### ***str()***
+
+Data structure
+
+```{r}
+students <- data.frame(
+  name = c("Ali", "Sara", "Omar", "Laila"),
+  age = c(20, 22, 21, 23),
+  grade = c(85.5, 90, 78, 88),
+  passed = c(TRUE, TRUE, FALSE, TRUE)
+)
+
+str(students)
+```
